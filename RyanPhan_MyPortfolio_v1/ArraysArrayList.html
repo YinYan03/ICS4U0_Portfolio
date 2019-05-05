@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="PageStyle.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lang=java&autorun=(true)"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro" rel="stylesheet">
+    <title>Ryan Phan - Tutorials</title>
+</head>
+
+<div class="topNavBar">
+    <div class="name">
+        <a href="RyanPhan_MyPortfolio.html">Ryan Phan</a>
+    </div>
+    <a href="Bibliography.html">Bibliography</a>
+    <a class="active" href="Tutorials.html">Tutorials</a>
+    <a href="Work.html">Work</a>
+    <a href="Biography.html">Biography</a>
+</div>
+
+<body>
+<h1>Arrays and ArrayList</h1>
+
+<h3>Arrays</h3>
+
+<h2>What is an Array?</h2>
+
+<p>
+    Let's say you want to store all of the names and ages of the people in your classroom/workplace into variables.
+    Wouldn't it be really tedious to create variables and assign each value to a variable? That's
+    a lot of variable names to keep track of! That's why we have arrays, as they are used to store several elements
+    of the same data type in one nice little variable. Now, how would we declare an array? To do this,
+    you would declare the type of elements you want in your array, like <code>int</code>
+    or <code>String</code>, then you would place <code>[]</code>. Since an array is an object, you'll
+    need to use the keyword <code>new</code> when you initialize it. Afterward, you put the type of elements
+    that will be stored in the array, followed by <code>[]</code> with the array size in it. Note that
+    the array size will be fixed once initialized.<br>
+
+
+<pre class="prettyprint">
+    int[] ages = new int[20];
+    String[] names = new String[20];
+</pre>
+</p>
+
+<h2>How would I put elements into an Array?</h2>
+<p>
+    You can put elements into an array through an <strong>initializer list</strong>. To do this
+    all you new to do is use curly braces "<code>{ }</code>" and put your elements inside, separated
+    by commas.
+
+<pre class="prettyprint">
+    int[] ages = {27, 29, 40, 32, 44, 37}; // And so on...
+    String[] names = {"Dave", "Bob", "Jeff", "Michelle", "Sofia"};
+</pre>
+
+<p>
+    Another way to add elements to an array would be using the index of the array. To do this,
+    you would call the name of the array and use "<code>[]</code>" with the index of the array
+    inside the brackets. Remember that arrays start at 0. Using this, you could fill the array using
+    loops. In the below example, we fill the array with random ages using Math.random() and
+    a loop. When using a loop,
+    know that <code>length</code> is a variable not a method, and is not followed by parenthesis. The
+    indices of an array go from 0 to <code>arrayName.length - 1</code>.
+
+<pre class="prettyprint">
+/*
+ * REMEMBER: The loop must terminate by your array length subtracted by 1, or
+ *           it will throw the dreaded IndexOutOfBounds error.
+ *
+ * The (int)(Math.random() * 23 + 18) returns a random integer from 18 to 60.
+ *
+ */
+public static void randomizeAges ()
+{
+    for (int x = 0 ; x < ages.length ; x++)
+    {
+        ages [x] = (int) (Math.random () * 43 + 18);
+    }
+}
+
+</pre>
+</p>
+
+<h2>Array Traversal</h2>
+<p>
+    In order to traverse an array for whatever reason, may it be to modify, access, or replace
+    elements, use a for loop. If you only need to access elements in the array, a for-each loop
+    will do. Never use a for each loop to remove or replace elements.
+    However, if you have an array of objects, keep in mind that you can use a
+    for-each loop to modify this objects through their mutator methods.
+
+<pre class="prettyprint">
+  /*
+   *@returnthenumber of people with ages below or equal to 30.
+   */
+  public static int underThirty (int[] ages)
+  {
+    int count = 0;
+    for (int age : ages) // for each age in array ages
+      if (age <= 30)
+      count++;
+    return count;
+  }
+
+
+  public static void main (String[] args)
+  {
+    int[] ages = {8, 19, 20, 32, 44, 67};
+    System.out.println (underThirty (ages));
+
+  }
+</pre>
+<p>
+    Outputs:
+</p>
+<pre class="prettyprint">
+3
+</pre>
+<h2>Arrays as Parameters</h2>
+<p>
+    An important thing to know about array is that they are treated like <strong>
+    objects</strong>. Thus, when you pass an array into a method, you are passing
+    its object reference. As a result, while the array being used in the method
+    may have a different identifier, <strong>any changes made to it will affect
+    the original array.</strong>
+    To demonstrate this, let's combine our randomizing loop from before and generate
+    some new ages.
+
+<pre class="prettyprint">
+/*
+     * @return the number of people with ages below or equal to 30.
+     */
+    public static void addAges (int[] addAges)
+    {
+        for (int x = 0 ; x < addAges.length ; x++)
+        {
+            addAges [x] += 100;
+        }
+    }
+
+
+    public static void main (String[] args)
+    {
+        int[] ages = {27, 29, 40, 32, 44, 37};
+        addAges(ages);
+        for (int x = 0 ; x < ages.length ; x++)
+        {
+            System.out.println (ages [x]);
+        }
+    }
+</pre>
+<p>
+    Output:
+</p>
+<pre class="prettyprint">
+127
+129
+140
+132
+144
+137
+</pre>
+<p>
+    As you can see, all of our ages stored in the <code>ages</code> array
+    are now over 100!
+</p>
+
+<h3>2D Arrays / Matrices</h3>
+<p>
+    While you can have arrays in any dimension you want (except negatives), more often than
+    not you'll be dealing with 2D arrays. So let's take a quick look at how they work.
+</p>
+<h2>Declaration</h2>
+<p>
+    Very much the same as a regular 1D array, but this time we use two <code>[]</code>s.
+    You can think of 2D arrays as a grid of coordinates, just like in math. Just as
+    (y,x) instead of (x,y).
+    The first <code>[]</code> contains the y values, or the rows, and the second block
+    contains the x values, or the number of rows.
+    Both of the following create a 2D array that is a 3 x 4 integer matrix.
+<pre class="prettyprint">
+    int[] grid = new int[3][4]; // Initializes an 3x4 array
+    int[] matrix = {{0, 1, 2, 3},
+                    {3, 4, 5, 6},
+                    {6, 7, 8, 9}}; // Initializes an filled 3x4 array
+</pre>
+<p>
+    As you may have noticed, a 2D array is essentially an array of 1D arrays! That's
+    why we can use the length variable in the same manner as 1D arrays. However, simply
+    using .length alone only returns the number of rows. If you want the number
+    of columns, you need to specify the row number.
+
+<pre class="prettyprint">
+    int[] table = new int[3][4]; // Initializes an 3x4 array
+    System.out.println(table.length);     // number of rows in the array
+    System.out.println(table[0].length);  // number of columns in the array
+</pre>
+<p>
+    Outputs:
+</p>
+<pre class="prettyprint">
+    3
+    4
+</pre>
+<p>This way of working with 2D array grants us the ability to use ragged arrays,
+or arrays with an inconsistent number of columns in each row. <br>
+    We can now do this:
+<pre class = "prettyprint">
+    int[] matrix = {{0, 1},
+                    {3, 4, 5, 6},
+                    {6, 7, 8}}; // Initializes an filled 3x4 array
+    System.out.println (matrix[0].length); // number of columns in the first row
+    System.out.println (matrix[1].length); // number of columns in the second row
+    System.out.println (matrix[2].length); // number of columns in the third row
+</pre>
+<p>
+    Outputs:
+<pre class="prettyprint">
+    2
+    4
+    3
+</pre>
+
+<h2>Traversal</h2>
+<p>
+    Since we now know that a 2D array acts like an array of arrays,
+    We can now use this to our advantage to help us access every element
+    of our array, even if we have a ragged array. All we need to do is create
+    two loops, one which goes through our rows and another nested one which
+    checks each column in the row.
+    Let's print out our previous array of integers onto the screen.
+
+<pre class="prettyprint">
+    int[][] matrix = {{0, 1},
+                      {3, 4, 5, 6},
+                      {6, 7, 8}}; // Initializes an filled 3x4 array
+    for (int i = 0 ; i < matrix.length ; i++) { // loops through rows
+        for (int j = 0 ; j < matrix[i].length ; j++) { // loops through columns in i row
+            System.out.print (matrix[i][j] + " ");
+        }
+        System.out.println();
+    }
+</pre>
+<p>
+    Or if you prefer for-each loops:
+</p>
+<pre class="prettyprint">
+    for (int[] row: matrix)// for each row array in matrix
+    {
+      for (int element: row) // for each element in row
+        System.out.print (element + " ");
+      System.out.println();
+    }
+</pre>
+<p>
+    Both output:
+</p>
+<pre class="prettyprint">
+    0 1
+    3 4 5 6
+    6 7 8
+</pre>
+
+
+<h3>ArrayList</h3>
+
+<h2>What's an ArrayList?</h2>
+<p>
+    
+</p>
+<p>
+    <br>
+
+<pre class="prettyprint">
+
+</pre>
+</p>
+
+</body>
+</html>

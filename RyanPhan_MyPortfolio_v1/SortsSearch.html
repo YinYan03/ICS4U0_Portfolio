@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="PageStyle.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lang=java&autorun=(true)"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro" rel="stylesheet">
+    <title>Ryan Phan - Tutorials</title>
+</head>
+
+<div class="topNavBar">
+    <div class="name">
+        <a href="RyanPhan_MyPortfolio.html">Ryan Phan</a>
+    </div>
+    <a href="Bibliography.html">Bibliography</a>
+    <a class="active" href="Tutorials.html">Tutorials</a>
+    <a href="Work.html">Work</a>
+    <a href="Biography.html">Biography</a>
+</div>
+
+<body>
+<h1>Sorting and Searching</h1>
+
+<p>
+    _______ <br>
+</p>
+
+
+<h3>Sorting Algorithms</h3>
+
+<h2>Selection Sort</h2>
+
+<p>
+    A good way to think of objects is to think about how objects work in real life. Every object has
+    <strong>attributes</strong>,
+    that describe the object. For example, the attributes for a human would be their gender, hair colour, their weight,
+    and so on.
+    In programming terms, these attributes would take the form of <strong>instance variables</strong>. These instance
+    variables would store the values of these attributes. <br>
+
+<pre class="prettyprint">
+    private String name;
+    private String state;
+    private String gender;
+    private String hairColour;
+    private int age;
+    private int weight;
+    private int height;
+</pre>
+</p>
+
+
+<h2>Insertion Sort</h2>
+
+<p>
+    Similar to selection sort, insertion sort splits the array into two sections. <br>
+
+<p> Here's our main method, but this time we'll use insertion sort to sort our arrays.
+     <br>
+<pre class="prettyprint">
+    public static void main (String[]args)
+    {
+      insertionSort (new String []{"Andy", "Andrey", "Jefferson", "Jason", "Meghan"});
+        System.out.println ();
+        insertionSort (new int []{5, 6, 4, -3, 9, 3, -7});
+    }
+</pre>
+</p>
+
+<p> Here's our main method, but this time we'll use insertion sort to sort our arrays.
+     <br>
+	 
+<pre class="prettyprint">
+    // Sorts an array of ints using insertion sort.
+    public static void insertionSort (int[] nums)
+    {
+        /*
+           Initializes a variable called unsortedInt that will store each unsorted int for comparing and 
+		   temporary storage purposes.
+		 */
+		int unsortedInt; 
+        
+        // Traverses the unsorted elements of the array.
+        for (int x = 1; x < nums.length; x++) 
+        {
+            // Sets unsortedInt and the index of the sorted int that it is being compared to.
+            unsortedInt = nums[x];
+            int sortedIntIndex = x - 1;
+            
+            /*
+			   Checks if the sorted int index is pointing at a valid index and checks if the element in the index is 
+			   greater than the unsorted element.
+               If both conditions are satisfied, the sorted int will be copied one element up in the array and the 
+			   sortedIntIndex will point one index down.
+             */
+            while (sortedIntIndex >= 0 && nums [sortedIntIndex] >= unsortedInt) 
+            {
+                nums [sortedIntIndex + 1] = nums [sortedIntIndex];
+                sortedIntIndex--;
+            }
+            /*
+			   Places the unsortedInt into the index above the sorted int index. This will occur either when the 
+			   sorted int index is pointing at -1 or at an int that is less than the unsorted int.
+			 */
+            nums [sortedIntIndex + 1] = unsortedInt;
+        }
+        // Prints all of the (now sorted) elements of the array.
+        for (int y = 0; y < nums.length; y++)
+        {
+            System.out.print (nums[y] + " ");
+        }
+        // Adds a line break.
+        System.out.println ();
+    }
+</pre>
+</p>
+
+<h2>Merge Sort</h2>
+
+<p>
+    A good way to think of objects is to think about how objects work in real life. Every object has
+    <strong>attributes</strong>,
+    that describe the object. For example, the attributes for a human would be their gender, hair colour, their weight,
+    and so on.
+    In programming terms, these attributes would take the form of <strong>instance variables</strong>. These instance
+    variables would store the values of these attributes. <br>
+
+<pre class = "prettyprint">
+    private String name;
+    private String state;
+    private String gender;
+    private String hairColour;
+    private int age;
+    private int weight;
+    private int height;
+</pre>
+</p>
+
+<h2>Sample Problems</h2>
+<p>
+    Now that we understand how arrays work, let's work our way through a sample problem using arrays. <br>
+	Write a program using methods and parameters to do all of the following:
+<ol>
+<li>	
+ Input a list of names and corresponding  marks (1 mark per name) from the file A7-1.txt from the Pickup folder. 
+ Assign data to arrays. Output the original data to the console in 2 columns with 5 spaces apart. <br><br>                                        
+</li> 
+
+<li>
+ Sort the data alphabetically by name, using insertion, selection, or merge sort, and output the data to the console in columns.  
+ Make sure that the name and the corresponding mark stay together. <br><br> 
+</li> 
+<li>
+ Sort the data numerically, from largest to smallest, by mark, using insertion, selection, or merge sort, and output the data to the console in columns. 
+ Make sure that the name and the corresponding mark stay together. <br><br> 
+</li>
+</ol>
+
+</body>
+</html>
