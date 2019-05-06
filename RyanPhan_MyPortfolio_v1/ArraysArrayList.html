@@ -91,7 +91,7 @@ public static void randomizeAges ()
 
 <pre class="prettyprint">
   /*
-   *@returnthenumber of people with ages below or equal to 30.
+   * Returns the number of people with ages below or equal to 30.
    */
   public static int underThirty (int[] ages)
   {
@@ -127,7 +127,7 @@ public static void randomizeAges ()
     some new ages.
 
 <pre class="prettyprint">
-/*
+    /*
      * @return the number of people with ages below or equal to 30.
      */
     public static void addAges (int[] addAges)
@@ -267,9 +267,9 @@ public static void randomizeAges ()
 <h2>What is an ArrayList?</h2>
 <p>
     Similar to arrays, an array list is an object capable of storing large sums of data. The primary difference
-    between the two is that unlike arrays, the length or capacity of an ArrayList can be changed. However, the downside
+    between the two is that unlike arrays, the length or capacity of an <code>ArrayList</code> can be changed. However, the downside
     is
-    that ArrayLists <strong>
+    that <code>ArrayList</code>s <strong>
     cannot store primitive data types, such as int, double, and char.</strong> If you want to store one of these
     data types, you can use their corresponding <strong>wrapper class</strong>. Some example of wrapper classes include
     the <code>Integer</code>, <code>Double</code>, <code>Character</code> classes.
@@ -277,20 +277,20 @@ public static void randomizeAges ()
 
 <h2>Initializing an ArrayList</h2>
 <p>
-    Since ArrayLists are objects, we'll need to declare it like an object, using the <code>new</code> keyword. The
+    Since <code>ArrayList</code>s are objects, we'll need to declare it like an object, using the <code>new</code> keyword. The
     capacity can be set within the <code>()</code> but the default capacity is 10. In this
     example, lets declare a to-do list for your very productive self.
 <pre class="prettyprint">
-    List&lt;String&gt; toDoList = new ArrayList&lt;String&gt;(); // initial capacity of 10
+    List&lt;String&gt; toDoList = new <code>ArrayList</code>&lt;String&gt;(); // initial capacity of 10
 </pre>
 <p>
-    Now you maybe wondering, why declare our ArrayList with <code>List</code>? We do this because it allows use to
+    Now you maybe wondering, why declare our <code>ArrayList</code> with <code>List</code>? We do this because it allows use to
     change
     our implementation of <code>List</code> easily, in the event we wanted something other than an
     <code>ArrayList</code>,
     like a <code>LinkedList</code>. If we had done:
 <pre class="prettyprint">
-    ArrayList&lt;String&gt; toDoList = new ArrayList&lt;String&gt;(); // Also creates an ArrayList
+    <code>ArrayList</code>&lt;String&gt; toDoList = new <code>ArrayList</code>&lt;String&gt;(); // Also creates an <code>ArrayList</code>
 </pre>
 <p>
     It would have been very tedious to change every instance of the <code>ArrayList</code> to <code>LinkedList</code>.
@@ -298,7 +298,7 @@ public static void randomizeAges ()
 
 <h2>Methods:</h2>
 <p>
-    The great thing about ArrayLists is how easy it is to manipulate its elements. It has methods inherited from the
+    The great thing about <code>ArrayList</code> is how easy it is to manipulate its elements. It has methods inherited from the
     <code>List</code>
     interface that allow us to easily add, remove, or access elements. As we modify the <code>ArrayList</code> with
     these
@@ -310,10 +310,10 @@ public static void randomizeAges ()
 <pre class="prettyprint">
     public static void main(String[] args) {
 
-        //ArrayList<String> Declaration
-        ArrayList<String> toDoList= new ArrayList<String>();
+        //<code>ArrayList</code><String> Declaration
+        <code>ArrayList</code><String> toDoList= new <code>ArrayList</code><String>();
 
-        //Add method for String ArrayList
+        //Add method for String <code>ArrayList</code>
         toDoList.add("Finish Portfolio");
         toDoList.add("Finish AP Labs");
         toDoList.add("Work on Organic Chem Worksheet");
@@ -367,9 +367,9 @@ TODO List: [Finish Picture Lab, Work on ICS ISP, Work on Organic Chem Worksheet,
 <p>
     By now you should be able to do the following:
     <ul>
-    <li>→Understand how to initialize, manipulate, and use arrays</li>
-    <li>→Understand how to initialize, manipulate, and use <code>ArrayLists</code></li>
-    <li>→Understand how to traverse 1D and 2D arrays using for-each and for loops</li>
+    <li>- Understand how to initialize, manipulate, and use arrays</li>
+    <li>- Understand how to initialize, manipulate, and use <code>ArrayList</code></li>
+    <li>- Understand how to traverse 1D and 2D arrays using for-each and for loops</li>
 </ul>
 </p>
 </body>

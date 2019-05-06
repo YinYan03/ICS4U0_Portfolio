@@ -137,12 +137,15 @@ a:active {
 
 img {
     display: block;
-    height: auto;
-    width: auto;
+    max-width:100%;
+    height:auto;
+}
+
+.tutorial_button
+{
     max-width: 400px;
     max-height: 400px;
 }
-
 .container {
     position: relative;
     width: 400px;
@@ -229,4 +232,10 @@ code{
     width: 50%;
     max-width: 300px;
     max-height: 300px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
