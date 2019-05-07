@@ -9,7 +9,7 @@
 
 <div class="topNavBar">
     <div class="name">
-        <a href="RyanPhan_MyPortfolio.html">RYAN PHAN</a>
+        <a href="RyanPhan_MyPortfolio.html">Ryan Phan</a>
     </div>
     <a href="Bibliography.html">Bibliography</a>
     <a class="active" href="Tutorials.html">Tutorials</a>
@@ -31,7 +31,8 @@
     <a href="StarWarsOOP.html">Press here for a Star Wars adventure through OOP! (Optional)</a>
 </h3>
 
-<h2>Creating a Human using Object-Oriented Programming</h2>
+<h3>Creating a Human using Object-Oriented Programming</h3>
+<h2>Variables and Encapsulation</h2>
 <p>
     A good way to think of objects is to think about how objects work in real life. Every object has
     <strong>attributes</strong>,
@@ -55,12 +56,12 @@
     Notice how our instance variable are set to private? We do this to prevent others from directly accessing our human's
     attributes. As a result, this gives us(the programmer) more control over the accessibility of these variables and
     makes it easier to maintain or edit our code. This concept is known as <strong>encapsulation</strong>.
-    In order to access/change these variables we will  need to use accessor and mutator methods, which will be
-    explained more in depth in the next few paragraphs.<br>
+    In order to access/change these variables we will need to use accessor and mutator methods, which will be
+    explained more in depth in the next section.<br>
 
 </p>
 
-
+<h2>Mutator and Accessor Methods</h2>
 <p>
     Every object also has a set of <strong>behaviours</strong>. These behaviours are
     used to manipulate and to access different components of the object. In our human example, they might want to change
@@ -254,8 +255,11 @@ public class Human {
 <p>
     Now how exactly do we create our friend Dave, who just so happens to be a 32 year old man?
     Well let's create him in our driver class, which is typically used to run
-    all of the other classes in a main method. To do this, we use the keyword  <code>new</code> to create
-    a <strong>instance</strong> of a class. Try running the below code in your IDE of choice!
+    all of the other classes in a main method. When we create Dave, we will essentially
+    be creating an <strong>instance</strong> of the Human class. Creating an instance of
+    a class is a lot like building a machine from a blueprint.
+    To do this, we use the keyword <code>new</code> to create
+    a our instance of the Human class. Try running the below code in your IDE of choice!
 
 <pre class = "prettyprint">
 /*
@@ -302,12 +306,72 @@ Dave jumped forward 4.0 feet out of sheer happiness!
     </pre>
     </td>
 </table>
+
+<h2>Instance vs. Static Methods</h2>
 <p>
-    So there we have it! Now that we know the basics of how objects work, we can get into some more interesting concepts.
+   Notice how we need to put <code>dave.</code> behind every method call we make? We do this
+    as our methods in the Human class are <strong>instance</strong> methods, hence why we need to
+    create an instance of the Human class every time we call it.
+    Instance/Member methods need an object of its class to be created in order to run,
+    while static/class methods can run without creating an object.
+    When using a class method, one would use the class name as
+    opposed to the object name before the method. When using the
+    instance methods the object name would come before the method.
+    To declare a static/class method, one would add <code>static</code> to the method header,
+    while an instance method will not have static attached to it. <br>
+
+    Let's take a look the following Human class:
+    <pre class = "prettyprint">
+public class Human {
+        private int health;
+        private static String planet = "Earth";
+
+         Human() {
+            health = 100;
+        }
+
+        public int getHealth(){
+          return health;
+        }
+
+        public static String getPlanet() {
+            return planet;
+        }
+
+        public static void main(String [] args) {
+            System.out.println("All humans live on " + Human.getPlanet() + ".");
+            Human david = new Human();
+            System.out.println("Health Level = " + david.getHealth());
+        }
+}
+</pre>
+</p>
+<p>
+    This outputs:
+</p>
+<table>
+    <td>
+        <pre>
+All humans live on Earth.
+Health Level = 100
+        </pre>
+    </td>
+</table>
+
+<p>
+    As seen here, <code>getPlanet()</code> works without the creation of a human object, but
+    <code>getHealth()</code> needs an instance to be made. If we were to try running <code>getHealth()</code>
+    like a static method, an error will be thrown.
 </p>
 
-<h2>
-    <a href="OOP_P2.html">Press here for Part 2! Here, you will learn about inheritance, polymorphism, and abstraction.</a>
-</h2>
+<p>
+    Now that we understand how objects work, let's move on to Part 2 of OOP, where we will cover
+    some more interesting topics, such as abstraction, polymorphism, and inheritance.
+</p>
+
+
+
+<a href="OOP_P2.html"><img class = "next_page" src="NextPage.png" height="200" width="200"></a>
+
 </body>
 </html>
