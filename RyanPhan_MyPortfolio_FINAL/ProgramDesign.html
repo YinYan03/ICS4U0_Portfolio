@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="PageStyle.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lang=java&autorun=(true)"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro" rel="stylesheet">
+    <title>Ryan Phan - Tutorials</title>
+</head>
+
+<div class="topNavBar">
+    <div class="name">
+        <a href="RyanPhan_MyPortfolio.html">Ryan Phan</a>
+    </div>
+    <a href="Bibliography.html">Bibliography</a>
+    <a class="active" href="Tutorials.html">Tutorials</a>
+    <a href="Work.html">Work</a>
+    <a href="Biography.html">Biography</a>
+</div>
+
+<body>
+<h1>Program Design</h1>
+
+<p>
+    In this tutorial, we'll cover some ways to help plan out your OOP-Based projects!<br>
+</p>
+
+<h3>Class Hierarchy Tree</h3>
+<p>
+    A class hierarchy tree is a great way to help visualize the hierarchy of your classes. We can't just make a blueprint without
+	planning out what will be in it! From here, you can
+	organize your super and subclasses. Take for example the <code>Human</code> class in our OOP tutorials. What classes inherit it?
+	Well we had <code>Student</code> and <code>Teacher</code>. <code>Student</code> had two other classes inheriting it: 
+	<code>CollegeStudent</code> and <code>HighSchoolStudent.</code><br><br>
+	
+	Here's how we would visualize such a project:
+	<img class = "center" src = "ClassTreeExample.png" height = "500" width = "500">
+</p>
+
+<h3>Unified Modeling Language (UML)</h3>
+<p>
+	Similar to a class hierarchy tree, UMLs allow us to plan out and model our projects before hand. A UML has three portions to it,
+	the class name, the class variables, and the methods and constructors of the class. Using <code>[+]</code> prior to identifier indicates public while
+	<code>[-]</code> indicates private. <code>[#]</code> indicates protected access. When something is delcared as protected, this essentially means
+	that the subclasses of the class that contains that variable or method can access it. Combined, each of these components would resemble this
+	template:
+	
+	<img class = "center" src = "UMLTemplate.png" height = "1000" width = "1000">
+
+	
+	Each of these tables represent a single class. In order to visualize the 
+    relationship between classes, UML diagrams use arrows, with the subclasses pointing up to the 
+	superclasses that they inherit from. Below is an example of a UML diagram for a group of classes
+	that represent various types of shapes. The open arrows represent inheritance, with each of our
+	<code>Shape</code> subclasses pointing at it, indicating that they extend that class.
+	
+	<img class = "center" src = "ShapeUML.png" height = "1200" width = "1200">
+</p>
+
+<a href="Recursion.html"><img class="last_page" src="LastPage.png" height="200" width="200"></a>
+</body>
+</html>

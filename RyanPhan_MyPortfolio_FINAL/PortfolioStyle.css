@@ -1,0 +1,60 @@
+body {
+    background-color: #212121;
+}
+
+h2 {
+    text-align: center;
+    font-family: Tw Cen MT;
+    font-size: 25px;
+    color: #00C853;
+}
+
+h1 {
+    position: absolute;
+    font-family: Tw Cen MT;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    font-size: 3cm;
+    color: #F5F5F5;
+}
+
+#menu ul {
+    position: fixed;
+    bottom: 20px;
+    left: 49%;
+    transform: translateX(-50%);
+    list-style: none;
+}
+
+li {
+    display: inline;
+    font-size: 30px;
+    font-family: Tw Cen MT;
+    color: #00E676;
+}
+
+a:link {
+    font-size: 30px;
+    font-family: Tw Cen MT;
+    color: #00E676;
+    text-decoration: none;
+}
+
+a:visited {
+    font-size: 30px;
+    font-family: Tw Cen MT;
+    color: #00E676;
+    text-decoration: none;;
+}
+
+a:hover {
+    color: #F5F5F5;
+    text-decoration: underline;
+    text-decoration-color: #F5F5F5;
+}
+
+a:active {
+    text-decoration: underline;
+}

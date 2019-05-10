@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="PageStyle.css">
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lang=java&autorun=(true)"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro" rel="stylesheet">
+    <title>Ryan Phan - Tutorials</title>
+</head>
+
+<div class="topNavBar">
+    <div class="name">
+        <a href="RyanPhan_MyPortfolio.html">Ryan Phan</a>
+    </div>
+    <a href="Bibliography.html">Bibliography</a>
+    <a class="active" href="Tutorials.html">Tutorials</a>
+    <a href="Work.html">Work</a>
+    <a href="Biography.html">Biography</a>
+</div>
+
+<body>
+<h1>Object-Oriented Programming Part 1</h1>
+
+<p>
+    To draw out the most of Java's capabilities, one must understand the concept of <strong>Object-Oriented Programming
+    (OOP)</strong>.
+    In OOP, there are three main concepts to grasp: objects, inheritance, and polymorphism. Let's focus on objects
+    first. <br>
+</p>
+
+<h3>
+    <a href="StarWarsOOP.html">Press here for a Star Wars adventure through OOP! (Optional)</a>
+</h3>
+
+<h3>Creating a Human using Object-Oriented Programming</h3>
+<h2>Variables and Encapsulation</h2>
+<p>
+    A good way to think of objects is to think about how objects work in real life. Every object has
+    <strong>attributes</strong>,
+    that describe the object. For example, the attributes for a human would be their gender, hair colour, their weight,
+    and so on.
+    In programming terms, these attributes would take the form of <strong>instance variables</strong>. These instance
+    variables would store the values of these attributes. <br>
+
+<pre class = "prettyprint">
+    private String name;
+    private String state;
+    private String gender;
+    private String hairColour;
+    private int age;
+    private int weight;
+    private int height;
+</pre>
+</p>
+
+<p>
+    Notice how our instance variable are set to private? We do this to prevent others from directly accessing our human's
+    attributes. As a result, this gives us(the programmer) more control over the accessibility of these variables and
+    makes it easier to maintain or edit our code. This concept is known as <strong>encapsulation</strong>.
+    In order to access/change these variables we will need to use accessor and mutator methods, which will be
+    explained more in depth in the next section.<br>
+
+</p>
+
+<h2>Mutator and Accessor Methods</h2>
+<p>
+    Every object also has a set of <strong>behaviours</strong>. These behaviours are
+    used to manipulate and to access different components of the object. In our human example, they might want to change
+    their hair colour. To do so they would use a <strong>mutator method</strong>, or a "setter" method to change their
+    hair colour. This method would then take in a colour and assign that colour to the hair colour variable. Here is an
+    example of a mutator method:<br>
+
+    <pre class = "prettyprint">
+    public void setHairColour(String hairColour) {
+        this.hairColour = hairColour;
+    }
+</pre>
+<br>
+</p>
+
+<p>
+    Now what if somebody asks our friend Dave, "What's your hair colour?". Dave needs to reply, but how? He would use <strong>accessor methods</strong>.
+    These methods return the values of our instance variables for whatever purpose we need it. Now Dave can tell everybody about his
+    new hair colour! Note that instead of "void", we now put "String". Why? Well this section of the method header is the return
+    type of the method. "void" simply means the method will return nothing. You can put any data type in the return section,
+    like "int" or even a "Human"!
+
+<pre class = "prettyprint">
+ public String getHairColour() {
+        return hairColour;
+    }
+</pre>
+</p>
+
+<p>
+    Great! Now our human can take on different attributes and behaviours! Now how do make a human? For that, we would call our
+    <strong>constructor</strong>, which is typically created at the top of our class.
+
+<pre class = "prettyprint">
+     /*
+      * This is our constructor! We call the default one (no args)
+      * or we can call this one, which allows you to set
+      * some variables as you construct your human.
+      */
+    public Human (String name, String gender, int age)
+    {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+</pre>
+</p>
+
+<p>
+    Now let's give our human the ability to perform human actions! To do this, we simply create some methods!
+
+<pre class = "prettyprint">
+    public void sleep()
+    {
+        state = "Well rested!";
+    }
+
+    public void grow(int growth)
+    {
+        height += growth;
+    }
+
+    public String jump(double jumpHeight)
+    {
+        return getName() + " jumped " + jumpHeight + " feet in the air!";
+    }
+
+    public String jump(String direction, double distance)
+    {
+        return getName() + " jumped " + direction + " " + distance + " feet";
+    }
+
+</pre>
+</p>
+
+<p>
+    As you may have noticed we have two "jump" methods! This is called method overloading, which essentially allows you
+    to create two methods with the same name, so long they have different arguments in the () section of the method header.
+</p>
+
+<p>
+    And that's that! Now we have all the pieces needed to create an object in Java!
+    Now all we must do is wrap these pieces in a class, or the blueprint for an object. In this case,
+    our Human class will serve as the template for any human we choose to create!
+
+<pre class = "prettyprint">
+/*
+ * Example: Human Class
+ * This class contains the variables (attributes) and methods (behaviours) of a human.
+ */
+public class Human {
+    // These are our variables!
+    private String name;
+    private String state;
+    private String gender;
+    private String hairColour;
+    private int age;
+    private int weight;
+    private int height;
+
+    /*
+     *
+     */
+    public Human (String name, String gender, int age)
+    {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHairColour() {
+        return hairColour;
+    }
+
+    public void setHairColour(String hairColour) {
+        this.hairColour = hairColour;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void sleep()
+    {
+        state = "Well rested!";
+    }
+
+    public void grow(int growth)
+    {
+        height += growth;
+    }
+
+    public String jump(double jumpHeight)
+    {
+        return getName() + " jumped " + jumpHeight + " feet in the air!";
+    }
+
+    public String jump(String direction, double distance)
+    {
+        return getName() + " jumped " + direction + " " + distance + " feet";
+    }
+
+}
+</pre>
+</p>
+
+<p>
+    Now how exactly do we create our friend Dave, who just so happens to be a 32 year old man?
+    Well let's create him in our driver class, which is typically used to run
+    all of the other classes in a main method. When we create Dave, we will essentially
+    be creating an <strong>instance</strong> of the Human class. Creating an instance of
+    a class is a lot like building a machine from a blueprint.
+    To do this, we use the keyword <code>new</code> to create
+    a our instance of the Human class. Try running the below code in your IDE of choice!
+
+<pre class = "prettyprint">
+/*
+ * Dave Class
+ * This class creates a Human called Dave and outputs his name, gender, and age. He also changes
+ * his hair colour along the way.
+ */
+public class Dave {
+  /*
+   * Our main method. This is where we actually create/run everything we wrote in other classes.
+   */
+  public static void main(String[] args)
+  {
+    // Recall our constructor header was public Human (String name, String gender, int age)
+    Human dave = new Human("Dave", "male", 32);
+    dave.setHairColour("black");
+    System.out.println ("Who are you?");
+    System.out.println ("My name is " + dave.getName() + " and I am a " + dave.getAge()
+    + " y/o " + dave.getGender() + ".");
+    System.out.println ("What's your hair colour?");
+    System.out.println ("Can't you see? It is " + dave.getHairColour()
+    + ". Maybe I should make it blue...");
+    dave.setHairColour("blue");
+    System.out.println ("Now it is " + dave.getHairColour() + "!");
+    System.out.println (dave.jump(2));
+    System.out.println (dave.jump("forward", 4) + " out of sheer happiness!");
+  }
+}
+</pre>
+<p>
+    Which outputs:
+</p>
+
+<table>
+    <td>
+    <pre>
+Who are you?
+My name is Dave and I am a 32y/o male.
+What's your hair colour?
+Can't you see? It is black. Maybe I should make it blue...
+Now it is blue!
+Dave jumped 2.0 feet in the air!
+Dave jumped forward 4.0 feet out of sheer happiness!
+    </pre>
+    </td>
+</table>
+
+<h2>Instance vs. Static Methods</h2>
+<p>
+   Notice how we need to put <code>dave.</code> behind every method call we make? We do this
+    as our methods in the Human class are <strong>instance</strong> methods, hence why we need to
+    create an instance of the Human class every time we call it.
+    Instance/Member methods need an object of its class to be created in order to run,
+    while static/class methods can run without creating an object.
+    When using a class method, one would use the class name as
+    opposed to the object name before the method. When using the
+    instance methods the object name would come before the method.
+    To declare a static/class method, one would add <code>static</code> to the method header,
+    while an instance method will not have static attached to it. <br>
+
+    Let's take a look the following Human class:
+    <pre class = "prettyprint">
+public class Human {
+        private int health;
+        private static String planet = "Earth";
+
+         Human() {
+            health = 100;
+        }
+
+        public int getHealth(){
+          return health;
+        }
+
+        public static String getPlanet() {
+            return planet;
+        }
+
+        public static void main(String [] args) {
+            System.out.println("All humans live on " + Human.getPlanet() + ".");
+            Human david = new Human();
+            System.out.println("Health Level = " + david.getHealth());
+        }
+}
+</pre>
+</p>
+<p>
+    This outputs:
+</p>
+<table>
+    <td>
+        <pre>
+All humans live on Earth.
+Health Level = 100
+        </pre>
+    </td>
+</table>
+
+<p>
+    As seen here, <code>getPlanet()</code> works without the creation of a human object, but
+    <code>getHealth()</code> needs an instance to be made. If we were to try running <code>getHealth()</code>
+    like a static method, an error will be thrown.
+</p>
+
+<p>
+    Now that we understand how objects work, let's move on to Part 2 of OOP, where we will cover
+    some more interesting topics, such as abstraction, polymorphism, and inheritance.
+</p>
+
+
+
+<a href="OOP_P2.html"><img class = "next_page" src="NextPage.png" height="200" width="200"></a>
+
+</body>
+</html>

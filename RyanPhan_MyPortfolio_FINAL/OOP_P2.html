@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="PageStyle.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lang=java&autorun=(true)"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Source+Code+Pro" rel="stylesheet">
+    <title>Ryan Phan - Tutorials</title>
+</head>
+
+<div class="topNavBar">
+    <div class="name">
+        <a href="RyanPhan_MyPortfolio.html">Ryan Phan</a>
+    </div>
+    <a href="Bibliography.html">Bibliography</a>
+    <a class="active" href="Tutorials.html">Tutorials</a>
+    <a href="Work.html">Work</a>
+    <a href="Biography.html">Biography</a>
+</div>
+
+<body>
+<h1>Object-Oriented Programming Part 2</h1>
+
+<p>
+    In Part 2, we'll be focusing on inheritance and polymorphism. We'll also touch upon
+    abstraction.<br>
+</p>
+
+<h3>Inheritance</h3>
+
+<h2>Superclass and Subclass</h2>
+<p>
+    Sometimes, when we are writing a program, we may find that some objects may share similar
+    characteristics with each other. Think back to our Human class in OOP Part 1. Many different
+    classes can share the characteristics of this Human class! For example, a student and a teacher
+    would both share the characteristics of the Human class as they are both(presumably) humans! Even our
+    student can be further broken down into a college student or a high school student! This means a class
+    can serve as both as <strong>subclass</strong> and a <strong>superclass</strong>. Our subclasses
+    are derived from other classes and superclasses are derived from. An easy way to figure
+    out if you should make a subclass is to say: This [subclass] <strong>is a</strong>
+    [superclass]. Does the statement make sense? <br> <br>
+    For example, "A <code>Pigeon</code> is a <code>Bird</code>". This makes sense, so we can
+    make the <code>Pigeon</code> class extend <code>Bird</code>.<br>
+    <br>
+    We call this relationship a <strong>IS-A</strong> relationship.
+    However, remember that in Java, a class can only extend one subclass, though more than one subclass can
+    extend the same superclass. <br><br>
+
+    So why do we do this? Well we did mention that these objects share similar or even the same
+    characteristics, so using inheritance would allow you to avoid code duplication. To do so we
+    add the <code>extends</code> keyword and then the class we want to inherit in the class head.
+    When we do this, the subclass inherits all of the methods and variables of the superclass. However,
+    note that constructors <strong>CANNOT</strong> be inherited.
+
+    Let's take a look at this in action:
+
+<pre class="prettyprint">
+    public class Human { // Superclass to Teacher and Student
+        ...
+    }
+
+    public class Teacher extends Human { // Subclass to Human
+        ...
+    }
+
+    public class Student extends Human { // Superclass to HighSchoolStudent & CollegeStudent
+        ...
+    }
+
+    public class HighSchoolStudent extends Student { // Subclass to Student
+        ...
+    }
+
+    public class CollegeStudent extends Student { // Subclass to Student
+        ...
+    }
+</pre>
+</p>
+<p>
+    Now you may be wondering, can a <code>HighSchoolStudent</code> or a
+    <code>CollegeStudent</code> be considered <code>Human</code>? While we may be tempted
+    to say no, as we know that classes can only extend one class (and because these students
+    have an insane ability to get things done at the last minute), the answer is actually yes!
+    Due to inheritance, <code>HighSchoolStudent</code> and <code>CollegeStudent</code> both
+    have the properties of a <code>Human</code>! Both of these classes have a IS-A relationship
+    with <code>Human</code>. This is why we call these classes objects!
+    Every class is a subclass of the <code>Object</code> class, may it be directly or indirectly.
+    This is great for us, as we can still access all of the properties a <code>Human</code> may
+    have, without having to copy over code.
+</p>
+
+<h3>Polymorphism</h3>
+
+<p>
+    The ability to override a superclasses method in one of its subclasses is considered
+    <strong>polymorphism</strong>. This allows us to create multiple objects that perform
+    the same action in different ways. For example, a <code>speak()</code> method
+    for a <code>Dog</code> may be entirely different from a <code>Cat</code>, even though
+    both would be considered a <code>Mammal</code>.
+    <br>
+</p>
+<h2>Overriding Methods</h2>
+<p>
+ To override a method, all we must do is create a method with the same name as the superclass's version,
+    but with different implementation. And so, when we call this method using a subclass object,
+    the overridden method will be used. Let's use our dog and cat example to demonstrate this.
+
+<pre class="prettyprint">
+public class Driver {
+  public static void main(String [] args) {
+    Mammal m = new Mammal();
+    Dog d = new Dog();
+    Cat c = new Cat();
+    // We call the same method, but with different objects.
+    m.speak();
+    d.speak();
+    c.speak();
+  }
+}
+
+// Superclass
+class Mammal {
+  public void speak() {
+    System.out.println("Mammal: *Mammal Sounds*");
+  }
+}
+
+// Subclass
+class Dog extends Mammal {
+  public void speak() {
+    System.out.println("Dog: *Woof*");
+  }
+}
+
+// Subclass
+class Cat extends Mammal {
+  public void speak() {
+    System.out.println("Cat: *Meow*");
+  }
+}
+</pre>
+</p>
+
+<p>
+    Outputs:
+</p>
+<table>
+    <td>
+        <pre>
+Mammal: *Mammal Sounds*
+Dog: *Woof*
+Cat: *Meow*
+        </pre>
+    </td>
+</table>
+
+<p>
+    As you can see, we have different output for the same method!
+</p>
+<h2>Upcasting And Downcasting</h2>
+<p>
+    When we cast a class, we are essentially giving it a different label. Just note that
+    casting only works between objects with a IS-A relationship. <br> <br>
+
+    Upcasting works because of this IS-A relationship, and thus it can never fail. This
+    allows Java to upcast automatically as a subclass can always be upcasted into its
+    superclass. <br><br>
+
+    For example:
+<pre class="prettyprint">
+/*
+ * Notice how we call the Subclass constructor?
+ * This makes it an object of the Subclass, under the label
+ * of the superclass.
+ * [Superclass] identifier = new [Subclass]();
+ */
+
+Human h1 = new Teacher (); // Automatically upcasts to Human
+</pre>
+</p>
+
+<p>
+    This is especially useful when using objects as an argument.
+    Thanks to automatic upcasting, any method which accepts a superclass as an
+    argument, can also accept that superclass's subclasses as an argument.
+
+<pre class="prettyprint">
+public static void disappoint (Human h)
+{
+    System.out.println ("You disappointed the " + h);
+}
+
+public static void main(String[] args)
+{
+    Teacher t = new Teacher();
+    disappoint(t); // Automatically gets upcasted to Human
+}
+</pre>
+</p>
+
+<p>
+    The above will compile and run without any issues! However, remember that while
+    <code>h1</code> is a <code>Teacher</code> object, it will be seen as a <code>Human</code>.
+    This means that any attribute or method unique to the Teacher class cannot be accessed
+    by <code>h1</code> until it is downcasted to a Teacher. <br><br>
+
+
+    Downcasting can only be done manually, as not every object is capable of being
+    downcasted into a subclass. If we had created <code>h1</code> using the <code>Human</code>
+    constructor, attempting to downcast it to <code>Teacher</code> or
+    <code>Student</code> would result in an error at runtime. This happens as it fails
+    the IS-A relationship test. Is a human a teacher or a student? No! Both the <code>Teacher</code> or
+    <code>Student</code> classes are subclasses of Human, and thus a Human object cannot
+    be downcasted into them. Downcasting only works when it can pass the
+    IS-A relationship test. Is a <code>Teacher</code> a <code>Student</code>? No,
+    they are both subclasses of Human. Thus you cannot downcast a <code>Teacher</code> into a
+    <code>Student</code>. Let's try to downcast our original upcast from a <code>Teacher</code>
+    to a <code>Human</code>
+
+<pre class="prettyprint">
+    Human h1 = new Teacher (); // Automatically upcasts to Human
+    Teacher t1 = h1; // Works! h1 is a Teacher object and thus the Human label can be downcasted
+</pre>
+</p>
+
+
+<h3>Abstraction</h3>
+<p>
+    Abstraction is done to control what information is shown to the user, and typically, for
+    a program, only the functionality is shown to the user while its implementation is hidden.
+    This concept builds upon the idea of polymorphism in order to achieve this goal.
+    The two ways of implementing abstraction are abstract classes and interfaces.<br>
+</p>
+<h2>Abstract Class</h2>
+<p>
+Abstract classes represent an abstract idea or concept of an object, and thus they are
+created only to serve as superclasses. You would not create any instances of a
+ abstract class. For example, when would you need to create an instance of a
+    <code>Mammal</code>? A mammal serves as the concept for more concrete
+    types of animals. While an abstract class can contain regular methods,
+    these classes may also contain abstract methods, or methods with
+    no useful default implementation. For example, our <code>speak()</code> method
+    in <code>Mammal</code> serves no purpose, as it is too vague.
+    Let's rewrite our <code>Mammal</code> code to use abstract methods.
+
+<pre class="prettyprint">
+public class Driver {
+  public static void main(String [] args) {
+    Dog d = new Dog();
+    Cat c = new Cat();
+    d.speak();
+    c.speak();
+  }
+}
+
+// Abstract classes are declared with the keyword abstract
+abstract class Mammal {
+  public abstract void speak(); // No implementation or braces
+}
+
+/** The following are our non-abstract subclasses **/
+
+class Dog extends Mammal {
+  public void speak() {
+    System.out.println("Dog: *Woof*");
+  }
+}
+
+class Cat extends Mammal {
+  public void speak() {
+    System.out.println("Cat: *Meow*");
+  }
+}
+</pre>
+</p>
+<p>
+    Outputs:
+</p>
+<table>
+    <td>
+        <pre>
+Dog: *Woof*
+Cat: *Meow*
+        </pre>
+    </td>
+</table>
+<p>
+    Note that both of our subclasses implement the abstract methods of <code>Mammal</code>.
+    If we forget to do this, a compile-time error will be thrown.
+</p>
+
+<h2>Interfaces</h2>
+<p>
+    Interfaces are similar to abstract classes, in which they act as superclasses
+and cannot be instantiated. Interfaces contain a collection of abstract methods which
+    <strong>must</strong> be implemented by its subclasses, otherwise you must declare
+the subclass as abstract. There are some key difference between the two though, as
+<ul class = "regList">
+    <li>Abstract classes can contain instance variables, whereas interface cannot.</li>
+
+    <li>Abstract classes can provide implementation code for its methods, while an interface cannot.</li>
+
+    <li>You can only extend one abstract class, but you can implement multiple interfaces.</li>
+
+    <li>To inherit an abstract class you use the extends keyword and for interfaces you use the implements word.</li>
+</ul>
+
+<p>
+Interfaces can be used when multiple unrelated objects have a similar feature amongst them.
+    For example, you could have an interface called <code>Flammable</code>, which could
+    include classes like <code>Trees</code>, <code>Oil</code>, or <code>Hair</code>. In the
+    below example, our interface is <code>PersonalInfo</code> implemented by <code>PersonRecord</code>.
+
+<pre class="prettyprint">
+import java.util.*;
+
+interface PersonalInfo
+{
+    Calendar getFileCreationDate(); // No implementation
+    int getCurrentAge(int birthYear); // No implementation
+}
+
+class PersonRecord implements PersonalInfo // Note the use of implements
+{
+    Calendar creationDate;
+    int currentAge;
+
+    public PersonRecord (Calendar creationDate)
+    {
+        this.creationDate = creationDate;
+    }
+
+    /** The following methods provide implementation for our abstract methods**/
+    public Calendar getFileCreationDate ()
+    {
+        return creationDate;
+    }
+
+    public int getCurrentAge (int birthYear)
+    {
+        currentAge = Calendar.getInstance().get(Calendar.YEAR) - birthYear;
+        return currentAge;
+    }
+}
+</pre>
+</p>
+<p>
+    And there we have it, all the basics of OOP! The next pages will cover some other
+    important topics in Java.
+</p>
+<a href="ArraysArrayList.html"><img class="next_page" src="NextPage.png" height="200" width="200"></a>
+<a href="OOP_P1.html"><img class="last_page" src="LastPage.png" height="200" width="200"></a>
+</body>
+</html>
